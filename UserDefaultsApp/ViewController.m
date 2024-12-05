@@ -29,6 +29,15 @@
     double dbl = [self.userDefaults doubleForKey:@"dblKey"];
     float flt = [self.userDefaults floatForKey:@"fltKey"];
     NSLog(@"String %@ Number %li Double %f Float %f", str, (long)number, dbl, flt);
+    [self resetDefaults];
+}
+
+- (void)resetDefaults {
+    NSDictionary *dict = [self.userDefaults dictionaryRepresentation];
+    for (id key in dict) {
+        [self.userDefaults removeObjectForKey:key];
+    }
+    [self.userDefaults synchronize];
 }
 
 
