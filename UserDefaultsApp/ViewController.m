@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import "ColorTitle.h"
 
 @interface ViewController ()
 
@@ -20,6 +21,12 @@
 //    [self.userDefaults setInteger:100 forKey:@"intKey"];
 //    [self.userDefaults setDouble:50.2 forKey:@"dblKey"];
 //    [self.userDefaults setFloat:30.35 forKey:@"fltKey"];
+    //UIColor * myColor = UIColor.redColor;
+    //CGPoint myPoint = CGPointMake(10, 10);
+    //ColorTitle * myTile = [[ColorTitle alloc] initWithTileOrigin:myPoint andColor:myColor];
+    //NSData *myData = [NSKeyedArchiver archivedDataWithRootObject:myTile];
+    //[self.userDefaults setObject:myData forKey:@"dataKey"];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -29,7 +36,11 @@
     double dbl = [self.userDefaults doubleForKey:@"dblKey"];
     float flt = [self.userDefaults floatForKey:@"fltKey"];
     NSLog(@"String %@ Number %li Double %f Float %f", str, (long)number, dbl, flt);
-    [self resetDefaults];
+    //[self resetDefaults];
+    NSData *data = [self.userDefaults objectForKey:@"dataKey"];
+    ColorTitle *resultData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSLog(@"X: %f", resultData.tileOrigin.x);
+    NSLog(@"Y: %f", resultData.tileOrigin.y);
 }
 
 - (void)resetDefaults {
